@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest ./src/server --coverage --detectOpenHandles --forceExit",
+    "test-eslint": "eslint ./",
     "start": "babel-node ./src/server/app"
   },
   "config": {
