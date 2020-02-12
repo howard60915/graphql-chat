@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`auth renew successfully renew 1`] = `
+Array [
+  "SELECT * FROM \\"user\\" WHERE \\"user\\".\\"deleted_at\\" IS NULL AND \\"id\\" IN ($1)",
+]
+`;
+
+exports[`auth sign in successfully signIn 1`] = `
+Array [
+  "SELECT * FROM \\"user\\" WHERE \\"user\\".\\"deleted_at\\" IS NULL AND \\"email\\" = $1 LIMIT 1",
+]
+`;
