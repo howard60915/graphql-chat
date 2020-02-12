@@ -8,7 +8,7 @@ jest.mock("../../../knexfile", () => {
       host: POSTGRES_HOST || "127.0.0.1",
       user: "postgres",
       password: null,
-      database: "chat_message"
+      database: "chat_user_conversation"
     }
   };
 });
@@ -16,18 +16,14 @@ jest.mock("../../../knexfile", () => {
 import client from "../client";
 import User from "../User";
 import Conversation from "../Conversation";
-import Message from "../Message";
+import UserConversation from "../UserConversation";
 
-describe("Conversation", () => {
+describe("UserConversation", () => {
   beforeAll(async () => {
-    await client.reset("chat_message");
+    await client.reset("chat_user_conversation");
     await new User().insert({
       id: "00000000-0000-0000-0000-000000000001",
       email: "hello@amazing.co"
-    });
-    await new User().insert({
-      id: "00000000-0000-0000-0000-000000000002",
-      email: "world@amazing.co"
     });
     await new Conversation().insert({
       id: "00000000-0000-0000-0000-000000000003",
@@ -40,19 +36,17 @@ describe("Conversation", () => {
     const conversation = "00000000-0000-0000-0000-000000000003";
 
     it("save & destroy", async () => {
-      const data = {
-        user,
+      const userConversation = new UserConversation({
         conversation,
-        content: "message test"
-      };
-      const message = new Message(data);
+        user
+      });
 
-      await message.save(user);
-      const id = message.valueOf();
-      const reply = await Message.load(id);
-      expect(reply.content).toBe("message test");
+      await userConversation.save(user);
+      const id = userConversation.valueOf();
+      const reply = await UserConversation.load(id);
+      expect((await reply.conversation).name).toBe("conversation");
 
-      const delReply = await message.destroy(user);
+      const delReply = await userConversation.destroy(user);
       expect(delReply.deletedAt).not.toBeNull();
     });
   });
