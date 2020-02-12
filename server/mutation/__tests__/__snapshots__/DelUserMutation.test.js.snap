@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DelUserMutation successfully delete when user is admin 1`] = `
+Array [
+  "SELECT * FROM \\"user\\" WHERE \\"user\\".\\"deleted_at\\" IS NULL AND \\"id\\" IN ($1)",
+  "UPDATE \\"user\\" SET \\"deleted_at\\" = $1, \\"deleted_by\\" = $2 WHERE \\"id\\" = $3 RETURNING *",
+]
+`;

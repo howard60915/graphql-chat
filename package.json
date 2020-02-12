@@ -4,9 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "develop": "NODE_ENV='development' nodemon ./server/app.js --exec babel-node --watch server",
     "test": "jest ./server --coverage --detectOpenHandles --forceExit",
     "test-eslint": "eslint ./",
-    "start": "babel-node ./src/server/app"
+    "build-server": "babel server -d dist --ignore '/__tests__/,/__mocks__/'",
+    "build-clean": "rm -rf dist",
+    "start": "knex migrate:latest; node ./dist/app.js",
+    "migrate": "knex migrate:latest"
   },
   "config": {
     "commitizen": {
@@ -57,6 +61,7 @@
     "react": "^16.12.0"
   },
   "devDependencies": {
-    "axios": "^0.19.2"
+    "axios": "^0.19.2",
+    "nodemon": "^2.0.2"
   }
 }

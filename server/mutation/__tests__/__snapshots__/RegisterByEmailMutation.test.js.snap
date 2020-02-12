@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`register user by email mutation register when user does not exist 1`] = `
+Array [
+  "SELECT * FROM \\"user\\" WHERE \\"user\\".\\"deleted_at\\" IS NULL AND \\"email\\" = $1",
+  "INSERT INTO \\"user\\" (\\"email\\",\\"archive\\",\\"created_at\\",\\"updated_at\\") VALUES ($1,$2,$3,$4) RETURNING *",
+]
+`;
+
+exports[`register user by email mutation sign when user is existed 1`] = `
+Array [
+  "SELECT * FROM \\"user\\" WHERE \\"user\\".\\"deleted_at\\" IS NULL AND \\"email\\" = $1",
+]
+`;

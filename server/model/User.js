@@ -1,4 +1,3 @@
-import _ from "lodash";
 import { GlobalModel, Hash } from "graphql-shortcake";
 import client from "./client";
 
@@ -17,19 +16,9 @@ export default class User extends GlobalModel {
     isAdmin: { type: Boolean, paths: ["archive"] }
   };
 
-  get preChanges() {
-    const changes = {};
-
-    _.forEach(this.current, (value, key) => {
-      const previous = this.previous[key];
-      const current = _.isPlainObject(previous)
-        ? _.defaultsDeep({}, value, previous)
-        : value;
-      if (!_.isEqual(previous, current)) {
-        changes[key] = previous;
-      }
-    });
-
-    return changes;
+  async checkWritability(user, ThrowError) {
+    const result = this.id === user.id || user.isAdmin;
+    if (!result) throw new ThrowError();
+    return result;
   }
 }

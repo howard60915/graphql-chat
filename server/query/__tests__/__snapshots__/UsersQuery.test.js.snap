@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`users query successfully query 1`] = `
+Array [
+  "SELECT * FROM \\"user\\" WHERE \\"user\\".\\"deleted_at\\" IS NULL",
+]
+`;
