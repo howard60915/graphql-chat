@@ -9,7 +9,7 @@
     "test-eslint": "eslint ./",
     "build-server": "babel server -d dist --ignore '/__tests__/,/__mocks__/'",
     "build-clean": "rm -rf dist",
-    "start": "knex migrate:latest; node ./dist/app.js",
+    "start": "knex migrate:latest; yarn build-server; node ./dist/app.js",
     "migrate": "knex migrate:latest"
   },
   "config": {
