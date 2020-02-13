@@ -29,7 +29,7 @@ type DelUserMutationPayload {
 }
 
 input AddConversationMutationInput {
-  name: String
+  userId: String!
 }
 
 type AddConversationMutationPayload {

@@ -15,6 +15,14 @@ export default function(req) {
         delUser(input: $input) { status user { id } }
       }
     `),
+    addConversation: req(`
+      mutation($input: AddConversationMutationInput!) {
+        addConversation(input: $input) {
+          status
+          conversation { name }
+        }
+      }
+    `),
     addMessage: req(`
       mutation($input: AddMessageMutationInput!) {
         addMessage(input: $input) {

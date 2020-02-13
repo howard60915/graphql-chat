@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddConversationMutation successfully add conversation 1`] = `
+Array [
+  "SELECT * FROM \\"user\\" WHERE \\"user\\".\\"deleted_at\\" IS NULL AND \\"id\\" IN ($1)",
+  "INSERT INTO \\"conversation\\" (\\"name\\",\\"created_by\\",\\"updated_by\\",\\"created_at\\",\\"updated_at\\") VALUES ($1,$2,$3,$4,$5) RETURNING *",
+  "INSERT INTO \\"user_conversation\\" (\\"user_id\\",\\"conversation_id\\",\\"created_by\\",\\"updated_by\\",\\"created_at\\",\\"updated_at\\") VALUES ($1,$2,$3,$4,$5,$6) RETURNING *",
+  "INSERT INTO \\"user_conversation\\" (\\"user_id\\",\\"conversation_id\\",\\"created_by\\",\\"updated_by\\",\\"created_at\\",\\"updated_at\\") VALUES ($1,$2,$3,$4,$5,$6) RETURNING *",
+]
+`;
