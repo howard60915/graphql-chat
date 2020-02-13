@@ -28,6 +28,15 @@ type DelUserMutationPayload {
   user: User
 }
 
+input AddConversationMutationInput {
+  name: String
+}
+
+type AddConversationMutationPayload {
+  status: ResponseStatus
+  conversation: Conversation
+}
+
 input AddMessageMutationInput {
   conversationId: String!
   content: String!
@@ -42,11 +51,18 @@ type Mutation {
   registerByEmail(input: RegisterByEmailMutationInput!): RegisterByEmailMutationPayload
   updateUser(input: UpdateUserMutationInput!): UpdateUserMutationPayload
   delUser(input: DelUserMutationInput!): DelUserMutationPayload
+  addConversation(input: AddConversationMutationInput!): AddConversationMutationPayload
   addMessage(input: AddMessageMutationInput!): AddMessageMutationPayload
 }
 
 type Query {
   users: [User]
+  conversations: [Conversation]
+  messages: [Message]
+}
+
+type Subscription {
+  onNewMessage: Message
 }
 
 enum ResponseStatus {
@@ -59,6 +75,12 @@ type User {
   email: String
   isAdmin: Boolean
 }
+
+type Conversation {
+  id: String
+  name: String
+}
+
 type Message {
   id: String
   user: User
