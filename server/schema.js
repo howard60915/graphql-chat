@@ -28,10 +28,21 @@ type DelUserMutationPayload {
   user: User
 }
 
+input AddMessageMutationInput {
+  conversationId: String!
+  content: String!
+}
+
+type AddMessageMutationPayload {
+  status: ResponseStatus
+  message: Message
+}
+
 type Mutation {
   registerByEmail(input: RegisterByEmailMutationInput!): RegisterByEmailMutationPayload
   updateUser(input: UpdateUserMutationInput!): UpdateUserMutationPayload
   delUser(input: DelUserMutationInput!): DelUserMutationPayload
+  addMessage(input: AddMessageMutationInput!): AddMessageMutationPayload
 }
 
 type Query {
@@ -47,6 +58,12 @@ type User {
   id: String
   email: String
   isAdmin: Boolean
+}
+type Message {
+  id: String
+  user: User
+  conversation: Conversation
+  content: String
 }
 `;
 
