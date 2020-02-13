@@ -3,7 +3,7 @@ import { AuthenticationError } from "apollo-server-errors";
 import UserConversation from "../model/UserConversation";
 import Message from "../model/Message";
 
-export default async function(source, { input }, { user }) {
+export default async function(source, { input }, { user, pubsub }) {
   if (!user) throw new AuthenticationError("authorization required");
   const { conversationId, content } = input;
   const { fetcher } = UserConversation;
@@ -16,6 +16,8 @@ export default async function(source, { input }, { user }) {
 
   const message = new Message({ user, content, conversation });
   await message.save(user);
+
+  pubsub.publish("OnMessage", { onNewMessage: message });
 
   return { status: "ok", message };
 }

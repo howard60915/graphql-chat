@@ -1,15 +1,18 @@
-import { GraphQLServer } from "graphql-yoga";
+import { GraphQLServer, PubSub } from "graphql-yoga";
 import auth from "./auth";
 import typeDefs from "./schema";
 import resolvers from "./resolvers";
 
 const jwtParser = auth.contextParser();
+const pubsub = new PubSub();
+
 const server = new GraphQLServer({
   typeDefs,
   resolvers,
   context: async context => {
     const { request, response } = context;
-    return jwtParser({ req: request, res: response });
+    const parsedContenx = await jwtParser({ req: request, res: response });
+    return { ...parsedContenx, pubsub };
   }
 });
 

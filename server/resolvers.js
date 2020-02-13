@@ -4,6 +4,7 @@ import UpdateUserMutation from "./mutation/UpdateUserMutation";
 import DelUserMutation from "./mutation/DelUserMutation";
 import AddMessageMutation from "./mutation/AddMessageMutation";
 import AddConversationMutation from "./mutation/AddConversationMutation";
+import OnMessage from "./subscription/OnMessage";
 
 const Query = {
   users: UsersQuery
@@ -17,4 +18,6 @@ const Mutation = {
   addConversation: AddConversationMutation
 };
 
-export default { Query, Mutation };
+const Subscription = { onMessage: OnMessage };
+
+export default { Query, Mutation, Subscription };

@@ -62,7 +62,7 @@ type Query {
 }
 
 type Subscription {
-  onNewMessage: Message
+  onMessage: Message
 }
 
 enum ResponseStatus {
